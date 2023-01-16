@@ -7,14 +7,64 @@ use Illuminate\Support\Facades\View;
 
 class AudioPlayerComponent extends Component
 {
+
+    /**
+     * The episode audio file
+     *
+     * @var string
+     */
+    public $audio_url;
+
+    /**
+     * The episode image
+     *
+     * @var string
+     */
+    public $img_url;
+
+    /**
+     * The episode id
+     *
+     * @var string
+     */
+    public $ep_id;
+
+    /**
+     * The episode title
+     *
+     * @var string
+     */
+    public $ep_title;
+
+    /**
+     * The episode date
+     *
+     * @var string
+     */
+    public $ep_date;
+
+    /**
+     * The show title
+     *
+     * @var string
+     */
+    public $show_title;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($audioUrl, $imgUrl, $epId, $epTitle, $epDate, $showTitle)
     {
-        //
+
+        $this->audio_url = $audioUrl;
+        $this->img_url = $imgUrl;
+        $this->ep_id = $epId;
+        $this->ep_title = $epTitle;
+        $this->show_title = $showTitle;
+        $this->ep_date = $epDate;
+
     }
 
     /**
