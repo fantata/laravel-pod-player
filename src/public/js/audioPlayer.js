@@ -12,6 +12,20 @@ let muteState = 'unmute';
 let currentIndex;
 
 
+const displayBufferedAmount = () => {
+    const bufferedAmount = Math.floor(
+        audios[currentIndex].buffered.end(
+            audios[currentIndex].buffered.length - 1
+        )
+    );
+
+    audios[currentIndex].style.setProperty(
+        "--buffered-width",
+        `${(bufferedAmount / seekSliders[currentIndex].max) * 100}%`
+    );
+};
+
+
 playIconContainers = Array.from(playIconContainers);
 
 playIconContainers.map( (cur, i, arr) => {
@@ -66,10 +80,18 @@ muteIconContainers.map((cur, i, arr) => {
 
 });
 
+audioPlayerContainers = Array.from(audioPlayerContainers);
 const showRangeProgress = (rangeInput, i) => {
 
-    if(rangeInput === seekSliders[i]) audioPlayerContainers[i].style.setProperty('--seek-before-width', rangeInput.value / rangeInput.max * 100 + '%');
-    else audioPlayerContainers[i].style.setProperty('--volume-before-width', rangeInput.value / rangeInput.max * 100 + '%');
+    if (rangeInput === seekSliders[i]) {
+
+        audioPlayerContainers[i].style.setProperty('--seek-before-width', rangeInput.value / rangeInput.max * 100 + '%');
+
+    } else {
+
+        audioPlayerContainers[i].style.setProperty('--volume-before-width', rangeInput.value / rangeInput.max * 100 + '%');
+
+    }
 
 }
 
@@ -83,10 +105,10 @@ seekSliders.map((cur, i, arr) => {
 });
 
 volumeSliders = Array.from(volumeSliders);
-volumeSliders.map((cur) => {
+volumeSliders.map((cur, i, arr) => {
 
     cur.addEventListener("input", (e) => {
-        showRangeProgress(e.target);
+        showRangeProgress(e.target, i);
     });
 
 });
@@ -94,7 +116,6 @@ volumeSliders.map((cur) => {
 let audios = document.getElementsByClassName("audio-widget");
 let durationContainers = document.getElementsByClassName("duration");
 let currentTimeContainers = document.getElementsByClassName("current-time");
-let outputContainers = document.getElementsByClassName("volume-output");
 
 let raf = null;
 
@@ -129,27 +150,6 @@ seekSliders.map((cur, i, arr) => {
 
 });
 
-
-audioPlayerContainers = Array.from(audioPlayerContainers);
-
-let displayBufferedAmount, bufferedAmount;
-
-audioPlayerContainers.map((cur, i, arr) => {
-
-    displayBufferedAmount = () => {
-
-        bufferedAmount = Math.floor(
-            audios[i].buffered.end(audios[i].buffered.length - 1)
-        );
-
-        cur.style.setProperty(
-            "--buffered-width",
-            `${(bufferedAmount / seekSliders[i].max) * 100}%`
-        );
-
-    };
-
-});
 
 
 const whilePlaying = () => {
@@ -223,7 +223,6 @@ audios.map( (cur, i, arr) => {
 
     }
 
-    cur.addEventListener("progress", displayBufferedAmount);
 });
 
 
@@ -235,7 +234,6 @@ volumeSliders.map((cur, i, arr) => {
 
         const value = e.target.value;
 
-        outputContainers[i].textContent = value;
         audios[i].volume = value / 100;
 
     });

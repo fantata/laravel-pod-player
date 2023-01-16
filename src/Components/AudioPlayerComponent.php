@@ -55,7 +55,13 @@ class AudioPlayerComponent extends Component
      *
      * @return void
      */
-    public function __construct($audioUrl, $imgUrl, $epId, $epTitle, $epDate, $showTitle)
+    public function __construct(
+        $audioUrl,
+        $imgUrl = null,
+        $epId = null,
+        $epTitle = null,
+        $epDate = null,
+        $showTitle = null)
     {
 
         $this->audio_url = $audioUrl;

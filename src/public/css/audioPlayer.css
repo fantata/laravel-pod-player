@@ -213,4 +213,6 @@ input[type="range"]:active::-ms-thumb {
     width: 130px;
     height: 130px;
     background-size: cover;
+    border: 1px solid #eee;
+    border-radius: 12px;
 }

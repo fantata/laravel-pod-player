@@ -4,7 +4,7 @@
 
         <div class="pl-4 pt-4 pb-4">
 
-            <div class='thumbnail' syyle='background-image: url("{{ $img_url }}")'></div>
+            <div class='thumbnail' style='background-image: url("{{ $img_url }}")'></div>
 
         </div>
 
@@ -49,9 +49,13 @@
 
             <div class='w-full'>
 
-                <div class='float-left'>
-                    <h6 class='text-xs uppercase'>Published on {{ date('j F, Y', strtotime($ep_date)) }}</h6>
-                </div>
+                @if($ep_date)
+
+                    <div class='float-left'>
+                        <h6 class='text-xs uppercase'>Published on {{ date('j F, Y', strtotime($ep_date)) }}</h6>
+                    </div>
+
+                @endif
 
                 <button class="mute-icon"></button>
 
