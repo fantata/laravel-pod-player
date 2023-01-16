@@ -1,4 +1,4 @@
-## Laravel Pod PLayer
+## Laravel Pod Player
 
 A simple HTML5 audio player, built with podcasts in mind. A laravel component.
 
