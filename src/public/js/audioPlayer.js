@@ -9,7 +9,11 @@ let muteIconContainers = document.getElementsByClassName("mute-icon");
 let playState = 'play';
 let muteState = 'unmute';
 
+let currentIndex;
+
+
 playIconContainers = Array.from(playIconContainers);
+
 playIconContainers.map( (cur, i, arr) => {
 
     cur.style.backgroundImage = "url(/vendor/fantata/img/play.png)";
@@ -20,6 +24,7 @@ playIconContainers.map( (cur, i, arr) => {
 
             audios[i].play();
             cur.style.backgroundImage = "url(/vendor/fantata/img/pause.png)";
+            currentIndex = i;
             requestAnimationFrame(whilePlaying);
             playState = "pause";
 
@@ -63,8 +68,6 @@ muteIconContainers.map((cur, i, arr) => {
 
 const showRangeProgress = (rangeInput, i) => {
 
-    console.log(rangeInput)
-
     if(rangeInput === seekSliders[i]) audioPlayerContainers[i].style.setProperty('--seek-before-width', rangeInput.value / rangeInput.max * 100 + '%');
     else audioPlayerContainers[i].style.setProperty('--volume-before-width', rangeInput.value / rangeInput.max * 100 + '%');
 
@@ -88,7 +91,6 @@ volumeSliders.map((cur) => {
 
 });
 
-
 let audios = document.getElementsByClassName("audio-widget");
 let durationContainers = document.getElementsByClassName("duration");
 let currentTimeContainers = document.getElementsByClassName("current-time");
@@ -103,24 +105,35 @@ const calculateTime = (secs) => {
     return `${minutes}:${returnedSeconds}`;
 }
 
+
 durationContainers = Array.from(durationContainers);
-let displayDuration;
-durationContainers.map((cur, i, arr) => {
-    displayDuration = () => {
-        cur.textContent = calculateTime(audios[i].duration);
-    };
-});
+
+const displayDuration = () => {
+
+    durationContainers[currentIndex].textContent = calculateTime(audios[currentIndex].duration);
+
+};
+
 
 seekSliders = Array.from(seekSliders);
+
 let setSliderMax;
+
 seekSliders.map((cur, i, arr) => {
+
     setSliderMax = () => {
+
         cur.max = Math.floor(audios[i].duration);
+
     };
+
 });
 
+
 audioPlayerContainers = Array.from(audioPlayerContainers);
+
 let displayBufferedAmount, bufferedAmount;
+
 audioPlayerContainers.map((cur, i, arr) => {
 
     displayBufferedAmount = () => {
@@ -138,25 +151,37 @@ audioPlayerContainers.map((cur, i, arr) => {
 
 });
 
-let whilePlaying;
+
+const whilePlaying = () => {
+
+    let cur = seekSliders[currentIndex];
+
+    cur.value = Math.floor(audios[currentIndex].currentTime);
+
+    currentTimeContainers[currentIndex].textContent = calculateTime(cur.value);
+
+    audioPlayerContainers[currentIndex].style.setProperty(
+        "--seek-before-width",
+        `${(cur.value / cur.max) * 100}%`
+    );
+
+    raf = requestAnimationFrame(whilePlaying);
+
+};
+
+
 seekSliders.map((cur, i, arr) => {
-    whilePlaying = () => {
-        cur.value = Math.floor(audios[i].currentTime);
-        currentTimeContainers[i].textContent = calculateTime(cur.value);
-        audioPlayerContainers[i].style.setProperty(
-            "--seek-before-width",
-            `${(cur.value / cur.max) * 100}%`
-        );
-        raf = requestAnimationFrame(whilePlaying);
-    };
 
     cur.addEventListener("input", () => {
 
         currentTimeContainers[i].textContent = calculateTime(cur.value);
 
         if (!audios[i].paused) {
+
             cancelAnimationFrame(raf);
+
         }
+
     });
 
     cur.addEventListener("change", () => {
@@ -164,30 +189,48 @@ seekSliders.map((cur, i, arr) => {
         audios[i].currentTime = cur.value;
 
         if (!audios[i].paused) {
+
+            currentIndex = i;
             requestAnimationFrame(whilePlaying);
+
         }
     });
 
 });
 
+
 audios = Array.from(audios);
-audios.map(cur => {
+
+audios.map( (cur, i, arr) => {
+
+    currentIndex = i;
+
     if (cur.readyState > 0) {
+
         displayDuration();
         setSliderMax();
         displayBufferedAmount();
+
     } else {
+
         cur.addEventListener("loadedmetadata", () => {
+
             displayDuration();
             setSliderMax();
             displayBufferedAmount();
+
         });
+
     }
+
     cur.addEventListener("progress", displayBufferedAmount);
 });
 
+
 volumeSliders = Array.from(volumeSliders);
+
 volumeSliders.map((cur, i, arr) => {
+
     cur.addEventListener("input", (e) => {
 
         const value = e.target.value;
@@ -195,5 +238,6 @@ volumeSliders.map((cur, i, arr) => {
         outputContainers[i].textContent = value;
         audios[i].volume = value / 100;
 
-   });
+    });
+
 });
