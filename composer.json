@@ -1,18 +1,11 @@
 {
     "name": "fantata/laravel-pod-player",
-    "description": "Laravel Livewire component for playing audio files. Made with podcasts in mind.",
+    "description": "Laravel component to play an audio file, built with podcasts in mind.",
     "type": "project",
     "license": "MIT",
     "autoload": {
         "psr-4": {
             "Fantata\\LaravelPodPlayer\\": "src/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Fantata\\LaravelPodPlayer\\LaravelPodPlayerServiceProvider"
-            ]
         }
     },
     "authors": [
