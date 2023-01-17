@@ -22,5 +22,11 @@
         }
     },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+
+    "scripts": {
+        "post-autoload-dump": [
+            "../../../php artisan vendor:publish --tag=public --force"
+        ]
+    }
 }

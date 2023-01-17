@@ -1,0 +1,22 @@
+{
+  "name": "laravel-pod-player",
+  "version": "1.0.0",
+  "description": "A simple HTML5 audio player, built with podcasts in mind. A laravel component.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss build -i tailwind.css -o src/public/css/tailwind.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fantata/laravel-pod-player.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fantata/laravel-pod-player/issues"
+  },
+  "homepage": "https://github.com/fantata/laravel-pod-player#readme",
+  "dependencies": {
+    "tailwindcss": "^3.2.4"
+  }
+}
