@@ -14,6 +14,13 @@
             "email": "chris@fantata.com"
         }
     ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fantata\\LaravelPodPlayer\\LaravelPodPlayerServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
     "require": {}
 }
