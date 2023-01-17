@@ -7,6 +7,7 @@ Adapted from [this CSS Tricks tutorial](https://css-tricks.com/lets-create-a-cus
 ### Installation
 
 `composer require fantata/laravel-pod-player`
+
 `php artisan vendor:publish --tag=public --force`
 
 Then add the JS and CSS to your template(s):
