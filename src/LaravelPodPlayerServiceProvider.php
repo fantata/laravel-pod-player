@@ -5,7 +5,7 @@ namespace Fantata\LaravelPodPlayer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 
-use Fantata\Components\AudioPlayerComponent;
+use Fantata\LaravelPodPlayer\AudioPlayerComponent;
 
 class LaravelPodPlayerServiceProvider extends ServiceProvider {
 

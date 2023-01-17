@@ -1,6 +1,6 @@
 <?php
 
-namespace Fantata\Components;
+namespace Fantata\LaravelPodPlayer;
 
 use Illuminate\View\Component;
 use Illuminate\Support\Facades\View;
