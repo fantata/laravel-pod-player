@@ -20,11 +20,18 @@ And finally, call the component, e.g.
 
 `
 <x-laravel-audio-player
+
     audioUrl="/audio.mp3"
+
     imgUrl="cover.jpg"
+
     epId="1"
+
     epTitle="Greatest Cheeses of All Time"
+
     epDate="20th Jan 2023"
+
     showTitle="The Amazing Things Podcast"
+
 />
 `
