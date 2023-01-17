@@ -33,3 +33,5 @@ And finally, call the component, e.g.
     showTitle="The Amazing Things Podcast"
 />
 ```
+
+audioUrl is the only required attribute.
