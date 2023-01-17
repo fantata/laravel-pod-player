@@ -18,20 +18,13 @@ Add the JS and CSS to your template:
 
 And finally, call the component, e.g.
 
-`
+```html
 <x-laravel-audio-player
-
     audioUrl="/audio.mp3"
-
     imgUrl="cover.jpg"
-
     epId="1"
-
     epTitle="Greatest Cheeses of All Time"
-
     epDate="20th Jan 2023"
-
     showTitle="The Amazing Things Podcast"
-
 />
-`
+```
