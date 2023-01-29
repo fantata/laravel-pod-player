@@ -22,8 +22,8 @@
 
         <div class="pr-4 w-full">
 
-            <h6 class='font-bold mt-5 show-title text-xs uppercase'>{{ $show_title }}</h6>
-            <h1 class='font-bold mt-1 pod-title text-xl'>{{ $ep_title }}</h1>
+            <h6 class='font-bold mt-5 show-title text-xs uppercase'>{!! $show_title !!}</h6>
+            <h1 class='font-bold mt-1 pod-title text-xl'>{!! $ep_title !!}</h1>
 
             <div class="flex">
 
