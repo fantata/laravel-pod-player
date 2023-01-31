@@ -1,14 +1,14 @@
-<div id='ep{{ $ep_id }}' class='audio-player-container rounded-xl text-lg'>
+<div id='ep{{ $ep_id }}' class='audio-player-container rounded-xl text-lg border'>
 
     <div class="flex">
 
-        <div class="pl-4 pt-4 pb-4">
+        <div class="pl-4 pt-4 pb-4 hidden sm:block">
 
             <div class='thumbnail' style='background-image: url("{{ $img_url }}")'></div>
 
         </div>
 
-        <div class="flex items-center justify-center px-8">
+        <div class="flex items-center justify-center px-6 md:px-8">
 
             <audio class='audio-widget' preload="metadata">
 
@@ -25,7 +25,13 @@
             <h6 class='font-bold mt-5 show-title text-xs uppercase'>{!! $show_title !!}</h6>
             <h1 class='font-bold mt-1 pod-title text-xl'>{!! $ep_title !!}</h1>
 
-            <div class="flex">
+            @if($ep_date)
+
+                <h6 class='text-xs uppercase p-0 m-0'>Published on {{ date('j F, Y', strtotime($ep_date)) }}</h6>
+
+            @endif
+
+            <div class="flex mr-2">
 
                 <div>
 
@@ -39,7 +45,7 @@
 
                 </div>
 
-                <div>
+                <div class="text-left">
 
                     <span class="duration time text-base">0:00</span>
 
@@ -47,15 +53,7 @@
 
             </div>
 
-            <div class='w-full'>
-
-                @if($ep_date)
-
-                    <div class='float-left'>
-                        <h6 class='text-xs uppercase'>Published on {{ date('j F, Y', strtotime($ep_date)) }}</h6>
-                    </div>
-
-                @endif
+            <div class='w-full pr-6'>
 
                 <button class="mute-icon"></button>
 

@@ -7,8 +7,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let volumeSliders = document.getElementsByClassName("volume-slider");
     let muteIconContainers = document.getElementsByClassName("mute-icon");
 
-    console.log(playIconContainers);
-
     let playState = "play";
     let muteState = "unmute";
 
