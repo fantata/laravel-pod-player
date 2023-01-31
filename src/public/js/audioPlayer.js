@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     let currentIndex;
 
-    const displayBufferedAmount = () => {
+    const displayBufferedAmount = (currentIndex) => {
         const bufferedAmount = Math.floor(
             audios[currentIndex].buffered.end(
                 audios[currentIndex].buffered.length - 1
@@ -109,21 +109,21 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     durationContainers = Array.from(durationContainers);
 
-    const displayDuration = () => {
+    const displayDuration = (currentIndex) => {
+
         durationContainers[currentIndex].textContent = calculateTime(
+
             audios[currentIndex].duration
+
         );
+
     };
 
     seekSliders = Array.from(seekSliders);
 
-    let setSliderMax;
-
-    seekSliders.map((cur, i, arr) => {
-        setSliderMax = () => {
-            cur.max = Math.floor(audios[i].duration);
-        };
-    });
+    const setSliderMax = (i) => {
+        seekSliders[i].max = Math.floor(audios[i].duration);
+    };
 
     const whilePlaying = () => {
         let cur = seekSliders[currentIndex];
@@ -164,17 +164,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
     audios = Array.from(audios);
 
     audios.map((cur, i, arr) => {
-        currentIndex = i;
 
         if (cur.readyState > 0) {
-            displayDuration();
-            setSliderMax();
-            displayBufferedAmount();
+            displayDuration(i);
+            setSliderMax(i);
+            displayBufferedAmount(i);
         } else {
             cur.addEventListener("loadedmetadata", () => {
-                displayDuration();
-                setSliderMax();
-                displayBufferedAmount();
+                displayDuration(i);
+                setSliderMax(i);
+                displayBufferedAmount(i);
             });
         }
     });
