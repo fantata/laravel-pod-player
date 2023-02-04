@@ -80,6 +80,7 @@ class AudioPlayerComponent extends Component
         $this->ep_date = $epDate;
         $this->show_desc = $showDesc;
 
+
     }
 
     /**
