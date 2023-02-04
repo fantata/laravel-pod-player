@@ -51,6 +51,13 @@ class AudioPlayerComponent extends Component
     public $show_title;
 
     /**
+     * The show desc
+     *
+     * @var string
+     */
+    public $show_desc;
+
+    /**
      * Create a new component instance.
      *
      * @return void
@@ -61,7 +68,8 @@ class AudioPlayerComponent extends Component
         $epId = null,
         $epTitle = null,
         $epDate = null,
-        $showTitle = null)
+        $showTitle = null,
+        $showDesc = null)
     {
 
         $this->audio_url = $audioUrl;
@@ -70,6 +78,7 @@ class AudioPlayerComponent extends Component
         $this->ep_title = $epTitle;
         $this->show_title = $showTitle;
         $this->ep_date = $epDate;
+        $this->show_desc = $showDesc;
 
     }
 
