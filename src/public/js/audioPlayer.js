@@ -12,16 +12,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     let currentIndex;
 
-    const displayBufferedAmount = (currentIndex) => {
+    const displayBufferedAmount = (i) => {
         const bufferedAmount = Math.floor(
-            audios[currentIndex].buffered.end(
-                audios[currentIndex].buffered.length - 1
-            )
+            audios[i].buffered.end(audios[i].buffered.length - 1)
         );
 
-        audios[currentIndex].style.setProperty(
+        audios[i].style.setProperty(
             "--buffered-width",
-            `${(bufferedAmount / seekSliders[currentIndex].max) * 100}%`
+            `${(bufferedAmount / seekSliders[i].max) * 100}%`
         );
     };
 
@@ -109,14 +107,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     durationContainers = Array.from(durationContainers);
 
-    const displayDuration = (currentIndex) => {
-
-        durationContainers[currentIndex].textContent = calculateTime(
-
-            audios[currentIndex].duration
-
-        );
-
+    const displayDuration = (i) => {
+        durationContainers[i].textContent = calculateTime(audios[i].duration);
     };
 
     seekSliders = Array.from(seekSliders);
@@ -164,7 +156,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     audios = Array.from(audios);
 
     audios.map((cur, i, arr) => {
-
         if (cur.readyState > 0) {
             displayDuration(i);
             setSliderMax(i);
@@ -183,7 +174,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     volumeSliders.map((cur, i, arr) => {
         cur.addEventListener("input", (e) => {
             const value = e.target.value;
-
             audios[i].volume = value / 100;
         });
     });

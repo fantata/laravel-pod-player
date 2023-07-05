@@ -53,7 +53,7 @@
 
             </div>
 
-            <div class='w-full pr-6'>
+            <div class='w-full' style='margin-top: -10px;'>
 
                 <button class="mute-icon"></button>
 
